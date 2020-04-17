@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
 
 class duplicateN extends duplicateNBase{
     duplicateN(){
@@ -79,27 +80,28 @@ class duplicateN extends duplicateNBase{
         }
         return list.size();
     }
-
+    
     private int alg_ntime_constant_space() {
-        // Use count array
-        //Time: O(n) Space: O(n)
-        //traverse through array, fill HashMap(array[i],frequency of array[i]) , where i = index;
-        //traverse through array again:
-        // if HashMap value==2, add to list
-        // else do nothing
-
-        int size = a.length;
-        HashMap<Integer, Integer> map = new HashMap<>();
-        ArrayList<Integer> list = new ArrayList<>();
-        for(int i = 0; i<size; i++){
-            map.put(a[i], map.getOrDefault(a[i], 0)+1);
-            if(map.get(a[i])==2)
-                list.add(a[i]);
+        // Create an array b[] of same size as a[]
+        int numRay[] = new int[a.length];
+        // Copy elements of a[] to b[]
+        for (int i=0; i<a.length; i++)
+            numRay[i] = a[i];
+        List<Integer> ans = new ArrayList<Integer>();
+        for (int i = 0; i < numRay.length; i++) {
+            numRay[numRay[i] %  numRay.length] = numRay[numRay[i] %  numRay.length] + numRay.length;
         }
-        return list.size();
+//        System.out.println("The repeating elements are : ");
+        for (int i = 0; i < numRay.length; i++) {
+            if (numRay[i] >= numRay.length*2) {
+                ans.add(i);
+//                System.out.println(i + " ");
+            }
+        }
+        return ans.size();
     }
 
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         // Nothing can be changed here
         System.out.println("duplicate problem STARTS");
         duplicateN m = new duplicateN();
