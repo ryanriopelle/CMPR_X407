@@ -4,7 +4,7 @@
  * 1. print all duplicates exactly once
  * 2. returns exact number of unique duplicates
  * 3. Given array should be intact at the end
- * 4. We need O(n) time and O(1) space algorythm
+ * 4. We need O(n) time and O(1) space algorithm
  */
 
 import java.util.ArrayList;
@@ -42,34 +42,21 @@ class duplicateN extends duplicateNBase{
 
     // function to find and print duplicates
     private int alg_nsquare_time_constant_space() {
-        // Basic
         int size = a.length;
         int i, j;
-//        List<Integer> dups = new ArrayList<Integer>();
         Set<Integer> dups = new HashSet<Integer>();
-        System.out.println("Repeated Elements are :");
         for (i = 0; i < size; i++)
         {
             for (j = i + 1; j < size; j++)
             {
                 if (a[i] == a[j])
                     dups.add(a[i]);
-                // use a linked list here and loop through the link list
             }
         }
-//        int len = 0;
-//        for (i = 0; i < size; i++)
         return dups.size();
     }
 
     public int alg_ntime_n_space() {
-        // Use count array
-        //Time: O(n) Space: O(n)
-        //traverse through array, fill HashMap(array[i],frequency of array[i]) , where i = index;
-        //traverse through array again:
-        // if HashMap value==2, add to list
-        // else do nothing
-
         int size = a.length;
         HashMap<Integer, Integer> map = new HashMap<>();
         ArrayList<Integer> list = new ArrayList<>();
@@ -91,11 +78,9 @@ class duplicateN extends duplicateNBase{
         for (int i = 0; i < numRay.length; i++) {
             numRay[numRay[i] %  numRay.length] = numRay[numRay[i] %  numRay.length] + numRay.length;
         }
-//        System.out.println("The repeating elements are : ");
         for (int i = 0; i < numRay.length; i++) {
             if (numRay[i] >= numRay.length*2) {
                 ans.add(i);
-//                System.out.println(i + " ");
             }
         }
         return ans.size();
